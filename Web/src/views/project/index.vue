@@ -1,6 +1,6 @@
 <template>
   <div>
-    Home
+    project
   </div>
 </template>
 
@@ -8,7 +8,7 @@
 // @ is an alias to /src
 
 export default {
-  name: "Home",
+  name: "project",
   data() {
     return {
     };

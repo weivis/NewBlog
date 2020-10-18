@@ -20,6 +20,78 @@ const routes = [
       }
     ]
   },
+  {
+    path: '/opus',
+    component: Layout,
+    children: [
+      {
+        path: '/',
+        name: 'opus',
+        component: () => import('@/views/opus/index.vue'),
+        meta: {title:'TA的作品'}
+      }
+    ]
+  },
+  {
+    path: '/work',
+    component: Layout,
+    children: [
+      {
+        path: '/',
+        name: 'work',
+        component: () => import('@/views/work/index.vue'),
+        meta: {title:'工作'}
+      }
+    ]
+  },
+  {
+    path: '/project',
+    component: Layout,
+    children: [
+      {
+        path: '/',
+        name: 'project',
+        component: () => import('@/views/project/index.vue'),
+        meta: {title:'项目创作'}
+      }
+    ]
+  },
+  {
+    path: '/article',
+    component: Layout,
+    children: [
+      {
+        path: '/',
+        name: 'article',
+        component: () => import('@/views/article/index.vue'),
+        meta: {title:'文章'}
+      }
+    ]
+  },
+  {
+    path: '/photograph',
+    component: Layout,
+    children: [
+      {
+        path: '/',
+        name: 'photograph',
+        component: () => import('@/views/photograph/index.vue'),
+        meta: {title:'摄影'}
+      }
+    ]
+  },
+  {
+    path: '/content',
+    component: Layout,
+    children: [
+      {
+        path: '/',
+        name: 'content',
+        component: () => import('@/views/content/index.vue'),
+        meta: {title:'内容'}
+      }
+    ]
+  }
 ]
 
 const router = new VueRouter({
