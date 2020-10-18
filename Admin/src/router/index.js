@@ -11,65 +11,38 @@ const routes = [
   {
     path: '/',
     component: Layout,
+    name: 'home',
     children: [
       {
-        path: '/',
-        name: 'home',
+        path: '/index',
         component: () => import('@/views/Home.vue'),
-        // meta: {title:'首页'}
-      }
-    ]
-  },
-  {
-    path: '/opus',
-    component: Layout,
-    children: [
-      {
-        path: '/',
-        name: 'opus',
-        component: () => import('@/views/opus/index.vue'),
-        meta: {title:'TA的作品'}
-      }
-    ]
-  },
-  {
-    path: '/work',
-    component: Layout,
-    children: [
-      {
-        path: '/',
-        name: 'work',
-        component: () => import('@/views/work/index.vue'),
-        meta: {title:'工作'}
-      }
-    ]
-  },
-  {
-    path: '/project',
-    component: Layout,
-    children: [
-      {
-        path: '/',
-        name: 'project',
-        component: () => import('@/views/project/index.vue'),
-        meta: {title:'项目创作'}
+        meta: {title:'首页'}
       }
     ]
   },
   {
     path: '/article',
+    name: 'article',
     component: Layout,
+    meta: {title:'文章'},
     children: [
       {
         path: '/',
         name: 'article',
         component: () => import('@/views/article/index.vue'),
-        meta: {title:'文章'}
+        meta: {title:'所有'}
+      },
+      {
+        path: 'edit',
+        name: 'edit',
+        component: () => import('@/views/article/index.vue'),
+        meta: {title:'新增和编辑'}
       }
     ]
   },
   {
     path: '/photograph',
+    name: 'photograph',
     component: Layout,
     children: [
       {
@@ -81,20 +54,9 @@ const routes = [
     ]
   },
   {
-    path: '/content',
-    component: Layout,
-    children: [
-      {
-        path: '/',
-        name: 'content',
-        component: () => import('@/views/content/index.vue'),
-        meta: {title:'内容'}
-      }
-    ]
-  },
-  {
     path: '/login',
     name: 'Login',
+    hidden: true,
     component: () => import('@/views/login/')
   }
 ]

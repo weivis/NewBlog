@@ -4,6 +4,7 @@ import ElementUI from 'element-ui'
 
 import App from './App.vue'
 import router from './router'
+import store from './store'
 import * as auth from './utils/auth'
 import '@/permission' // permission control
 import '@/styles/main.scss' // global css
@@ -14,7 +15,7 @@ Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.prototype.$authUser = auth
 
-const whiteList = ['/login','/404'] // 不重定向白名单
+const whiteList = ['/login','/404', '/index'] // 不重定向白名单
 router.beforeEach((to, from, next) => {
     let user = auth.getuser()
     console.log('Token',user)
@@ -49,5 +50,6 @@ router.beforeEach((to, from, next) => {
 new Vue({
   el: '#app',
   router,
+  store,
   render: h => h(App)
 }).$mount('#app')
