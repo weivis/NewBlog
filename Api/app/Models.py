@@ -181,21 +181,12 @@ class AccountAdmin(BaseModel_Account, db.Model):
         return self
 
 
+# 本项目不开启用户表 --------------------------------------------
+
 class AccountUser(BaseModel, db.Model):
     """用户表"""
 
     __tablename__ = 'account_user'
-    email = db.Column(db.Text)
-    head = db.Column(db.Text)
-    introduce = db.Column(db.Text)
-    username = db.Column(db.String(255))
-    password = db.Column(db.Text)
-    status = db.Column(db.Integer, default=0)
-
-    def SetUserStatus(self, newstatus):
-        """设置用户Status"""
-        self.status = newstatus
-        db.session.commit()
 
 
 class ErrorLog(BaseModel, db.Model):
