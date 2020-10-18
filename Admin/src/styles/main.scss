@@ -1,0 +1,26 @@
+@import './transition.scss';
+
+a, li, ul{
+    text-decoration:none;
+    list-style-type:none;
+  }
+
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  height: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+}
+
+#app {
+  height: 100%;
+}
+
+html {
+  height: 100%;
+  box-sizing: border-box;
+}
