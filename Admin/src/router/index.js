@@ -28,7 +28,7 @@ const routes = [
     children: [
       {
         path: '/',
-        name: 'article',
+        name: 'all',
         component: () => import('@/views/article/index.vue'),
         meta: {title:'所有'}
       },
