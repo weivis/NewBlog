@@ -1,6 +1,6 @@
 .common-header{
     position: fixed;top: 0;left: 0;right: 0;
-    z-index: 10;
+    z-index: 100;
     width: 100%;background-color: #333333;height: 72px;
     font-family: 'Microsoft YaHei', 'Microsoft YaHei UI';
     
@@ -63,3 +63,137 @@
     }
 
 }
+
+.openmubutt{
+    z-index: 150;
+    border-radius: 50px;
+    padding: 15px;
+    margin: 15px;
+    width: 30px;
+    height: 30px;
+    background-color: rgba(51,51,51,0.5);
+    position: fixed;
+    line-height: 30px;
+    text-align: center;
+    bottom: 0;
+    left: 0;
+    font-size: 30px;
+    color: #ffffff;
+}
+
+@media screen and (max-width: 1200px) {
+    .common-header{
+        .nav{
+            // margin-left: 40px;
+            /**item的左右距离**/
+            $itemPaddinglr: 20px;
+        }
+        .morecom{
+            .item{margin-left: 20px;}
+        }
+    
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .common-header{
+        position: fixed;top: 0;left: 0;right: 0;
+        border-bottom: #484848 1px solid;
+    
+        .nav{
+            position: absolute;
+            top: 73px;
+            left: 0;
+            right: 0;
+            width: 100%;
+            margin-left: 0px;
+            margin: 0 auto;
+            padding-left: 5%;
+            background-color: #333333;
+            font-size: 14px;
+            /**item的左右距离**/
+            $itemPaddinglr: 22px;
+            .router-link-active{
+                .item{
+                    height: 45px;
+                    line-height: 45px;
+                    border-bottom: 4px solid #ff6ea5;
+                }
+            }
+            .normal{
+                .item{
+                    height: 45px;
+                    line-height: 45px;
+                }
+            }
+        }
+        .morecom{
+            float: right;
+            margin-top: 20px;
+            .item{width: 30;height: 30px;float: right;margin-left: 30px;}
+        }
+    
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .common-header{
+        position: fixed;top: 0;left: 0;right: 0;
+        width: 100%;height: 72px;
+    
+        .header{
+            width: 72px;height: 72px;float: left;overflow: hidden;
+            position: fixed;
+            left: 0;
+        }
+
+        .name{
+            position: fixed;left: 70px;
+            }
+
+        .nav{
+            padding-left:0 !important;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 73px;
+            bottom: 0;
+            background-color: rgba(51, 51, 51, 0.933);
+            margin: 0 auto;
+
+            width: 100%;
+            height: calc(100vh - 72px);
+
+            float: inherit;
+            margin-left: 0px;
+            font-size: 14px;
+            color: #ffffff;
+    
+            /**item的左右距离**/
+            $itemPaddinglr: 0px;
+            $itemTextcolor: #ffffff;
+            
+            .box{float: inherit;}
+            .router-link-active{
+                float: inherit;
+                .item{
+                    height: 45px;
+                    line-height: 45px;
+                    border-left: 4px solid #ff6ea5;
+                    border-bottom: 0;
+                    padding-left: 25px;
+                }
+            }
+            .normal{
+                float: inherit;
+                .item{
+                    height: 45px;
+                    line-height: 45px;
+                    border-bottom: 1px solid #525252;
+                }
+            }
+        }  
+    
+    }
+}
+

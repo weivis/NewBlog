@@ -16,7 +16,7 @@ const routes = [
       {
         path: '/',
         name: 'home',
-        component: () => import('@/views/Home.vue'),
+        component: () => import('@/views/home/index.vue'),
       }
     ]
   },
@@ -86,7 +86,7 @@ const routes = [
     ]
   },
   {
-    path: '/content',
+    path: '/content/:id',
     component: Layout,
     hidden: true,
     children: [

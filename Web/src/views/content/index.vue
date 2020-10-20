@@ -1,6 +1,6 @@
 <template>
   <div>
-    content
+    <div>IDData {{ $route.params.id }}</div>
   </div>
 </template>
 
