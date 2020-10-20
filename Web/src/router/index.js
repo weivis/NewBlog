@@ -11,18 +11,19 @@ const routes = [
   {
     path: '/',
     component: Layout,
+    navname:'首页',
     children: [
       {
         path: '/',
         name: 'home',
         component: () => import('@/views/Home.vue'),
-        // meta: {title:'首页'}
       }
     ]
   },
   {
     path: '/opus',
     component: Layout,
+    navname:'TA的作品',
     children: [
       {
         path: '/',
@@ -35,6 +36,7 @@ const routes = [
   {
     path: '/work',
     component: Layout,
+    navname: '工作',
     children: [
       {
         path: '/',
@@ -47,6 +49,7 @@ const routes = [
   {
     path: '/project',
     component: Layout,
+    navname: '项目创作',
     children: [
       {
         path: '/',
@@ -59,6 +62,7 @@ const routes = [
   {
     path: '/article',
     component: Layout,
+    navname: '技术文章',
     children: [
       {
         path: '/',
@@ -71,6 +75,7 @@ const routes = [
   {
     path: '/photograph',
     component: Layout,
+    navname: '摄影',
     children: [
       {
         path: '/',
@@ -83,6 +88,7 @@ const routes = [
   {
     path: '/content',
     component: Layout,
+    hidden: true,
     children: [
       {
         path: '/',

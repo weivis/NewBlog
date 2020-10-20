@@ -1,0 +1,65 @@
+.common-header{
+    position: fixed;top: 0;left: 0;right: 0;
+    z-index: 10;
+    width: 100%;background-color: #333333;height: 72px;
+    font-family: 'Microsoft YaHei', 'Microsoft YaHei UI';
+    
+    .header{
+        width: 72px;height: 72px;float: left;overflow: hidden;
+    }
+
+    img{
+        width: 100%;
+    }
+
+    .name{
+        float: left;
+        margin-left: 22px;
+        color: #ffffff;
+        .en{font-size: 18px;font-weight: bold;margin-top: 12px;}
+        .cn{font-size: 14px;font-weight: 500;margin-top: 2px;}
+    }
+
+    .nav{
+        float: left;
+        margin-left: 75px;
+        font-size: 14px;
+        color: #ffffff;
+
+        /**item的左右距离**/
+        $itemPaddinglr: 22px;
+        $itemTextcolor: #ffffff;
+        
+        .box{float: left;}
+        .router-link-active{
+            float: left;
+            .item{
+                padding-left: $itemPaddinglr;
+                padding-right: $itemPaddinglr;
+                height: 68px;
+                line-height: 72px;
+                overflow: hidden;
+                color: $itemTextcolor;
+                border-bottom: 4px solid #ff6ea5;
+            }
+        }
+        .normal{
+            float: left;
+            .item{
+                padding-left: $itemPaddinglr;
+                padding-right: $itemPaddinglr;
+                height: 68px;
+                line-height: 72px;
+                color: $itemTextcolor;
+                overflow: hidden;
+            }
+        }
+    }
+
+    .morecom{
+        float: right;
+        margin-top: 20px;
+        .item{width: 30;height: 30px;float: right;margin-left: 30px;}
+    }
+
+}
