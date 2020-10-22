@@ -8,8 +8,8 @@
             <div class="title">更多</div>
 
             <div class="content">
-              <el-row :gutter="gutter">
-                <el-col
+              <el-row :gutter="30">
+                <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6"
                   :span="span"
                   v-for="(item, index) in list"
                   :key="'morecontent' + index"
@@ -47,9 +47,6 @@ export default {
   name: "morecontent",
   data() {
     return {
-      screenWidthmorecontent: document.body.clientWidth,
-      gutter: 30,
-      span: 12,
       list: [
         {
           cover:"https://illya-support.weivird.com/static/com/video/cover/20200703192730548.jpg",
@@ -84,45 +81,10 @@ export default {
   },
   components: {},
   created() {
-    if (document.body.clientWidth > 992) {
-      this.gutter = 30;
-      this.span = 6;
-    } else {
-      this.gutter = 30;
-      this.span = 12;
-    }
   },
   watch: {
-    screenWidthmorecontent(val) {
-      // 为了避免频繁触发resize函数导致页面卡顿，使用定时器
-      if (!this.timer) {
-        // 一旦监听到的screenWidthmorecontent值改变，就将其重新赋给data里的screenWidthmorecontent
-        this.screenWidthmorecontent = val;
-        this.timer = true;
-        let that = this;
-        setTimeout(function () {
-          // 打印screenWidthmorecontent变化的值
-          if (that.screenWidthmorecontent < 992) {
-            that.gutter = 30;
-            that.span = 12;
-          } else {
-            that.gutter = 30;
-            that.span = 6;
-          }
-          console.log(that.screenWidthmorecontent);
-          that.timer = false;
-        }, 400);
-      }
-    },
   },
   mounted() {
-    const that = this;
-    window.onresize = () => {
-      return (() => {
-        window.screenWidth = document.body.clientWidth;
-        that.screenWidthmorecontent = window.screenWidth;
-      })();
-    };
   },
 };
 </script>
