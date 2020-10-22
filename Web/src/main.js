@@ -12,6 +12,9 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.config.productionTip = false
 
+const vueAnimate = require('@/utils/vue-animate')
+
+Vue.use(vueAnimate)
 Vue.use(ElementUI)
 Vue.use(VueLive2d)
 
