@@ -130,6 +130,8 @@ export default {
 <style lang="scss" scoped>
 .morecontent-components {
   .body {
+    position: relative;
+    z-index: 60;
     overflow: hidden;
     min-height: 500px;
     background-color: #333333;

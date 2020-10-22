@@ -1,7 +1,7 @@
 <template>
   <div class="layout-Header">
 
-    <div class="openmubutt" v-if="navopbutton" @click="oepnnav()"><i class="el-icon-s-fold"></i></div>
+    <div class="openmubutt" @click="oepnnav()"><i class="el-icon-s-fold"></i></div>
 
     <div class="common-header">
       <div class="layout">
@@ -45,7 +45,6 @@ export default {
   data() {
     return {
       navop: true,
-      navopbutton: false,
       screenWidth: document.body.clientWidth,
       logo:{
         en:"By WeiVi.rd",
@@ -61,10 +60,8 @@ export default {
   created(){
       if(document.body.clientWidth > 768){
           this.navop = true
-          this.navopbutton = false
       }else{
           this.navop = false
-          this.navopbutton = true
       }
   },
   watch: {
@@ -79,10 +76,8 @@ export default {
           // 打印screenWidth变化的值
           if (that.screenWidth < 768) {
               that.navop = false
-              that.navopbutton = true
           } else {
             that.navop = true;
-            that.navopbutton = false
           }
           console.log(that.screenWidth);
           that.timer = false;
@@ -92,21 +87,18 @@ export default {
   },
   methods:{
       oepnnav(){
-        if (this.navopbutton == true){
-          if (this.navop == false){
-              this.navop = true
-          }else{
-              this.navop = false
-          }
+        if (this.navop == false){
+            this.navop = true
+        }else{
+            this.navop = false
         }
       }
   },
   mounted() {
-    const that = this;
     window.onresize = () => {
       return (() => {
         window.screenWidth = document.body.clientWidth;
-        that.screenWidth = window.screenWidth;
+        this.screenWidth = window.screenWidth;
       })();
     };
   },

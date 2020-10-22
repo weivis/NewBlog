@@ -2,11 +2,12 @@
   <div class="FirstScreen">
     <div class="firstScreenComponents">
       <div class="body" :style="body">
-        <div class="h">
+        <div class="h" v-parallax="0.2" style="margin-top:0px">
           <div class="live2d-lvjing">
             <img src="@/assets/home/live2d-lvjing.png" />
+            <div></div>
           </div>
-          <live2d class="live2d" />
+          <live2d class="live2d" v-parallax="0.2" />
           <div class="w">
             <div class="txtbox">
               <div class="mycover">
@@ -111,11 +112,16 @@ export default {
   right: 15%;
   width: 400px;
   left: inherit;
-  bottom: -30px;
+  bottom: -40px;
 }
 .live2d-lvjing {
-  z-index: 50;
   display: none;
+  div{
+    margin-top: -10px;
+    background-color: #ffffff;
+    height: 50vh;
+    width: 100%;
+  }
 }
 .firstScreenComponents {
   .body {
@@ -127,7 +133,8 @@ export default {
     background-repeat: no-repeat;
   }
   .h {
-    height: 760px;
+    height: 770px;
+    margin-bottom: 60px;
   }
   .w {
     max-width: 1300px;
@@ -241,7 +248,7 @@ export default {
   .live2d-wrap {
     position: absolute;
     margin: 0 auto;
-    top: -100px;
+    top: -65px;
     right: 0;
     left: -60px;
     z-index: 10;
@@ -252,7 +259,7 @@ export default {
     z-index: 80;
     width: 80%;
     position: absolute;
-    top: 65vh;
+    top: 70vh;
     font-family: "Microsoft YaHei", "Microsoft YaHei UI";
     color: #000;
   }
@@ -272,7 +279,7 @@ export default {
       background-repeat: no-repeat;
     }
     .h {
-      height: calc(100vh + 400px);
+      height: calc(100vh + 500px);
     }
     .w {
       max-width: 1300px;
