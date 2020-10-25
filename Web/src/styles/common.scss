@@ -82,6 +82,40 @@
     color: #ffffff;
 }
 
+.footer {
+    background-color: #333333;
+    min-height: 350px;
+    width: 100%;
+    overflow: hidden;
+    .content {
+      width: 100%;
+      margin-top: 50px;
+    }
+    .tab {
+      float: left;
+      margin-bottom: 50px;
+    }
+    .name {
+      font-size: 14px;
+      color: #ffffff;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+  }
+  .footer-mun {
+    .item {
+      font-size: 12px;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+  }
+  .footer-bottom{
+      color: #ffffff;
+      font-size: 12px;
+      .footer-bottom-l{float: left;margin-right: 20px;}
+      .footer-bottom-r{float: right;margin-left: 20px;}
+  }
+
 @media screen and (max-width: 1200px) {
     .common-header{
         .nav{
@@ -135,9 +169,28 @@
         }
     
     }
+    .footer-bottom{
+        margin-bottom: 300px;
+        .footer-bottom-l{
+            float: left;
+            width: 100%;
+            margin-bottom: 15px;
+            margin-right: 0px;
+        }
+        .footer-bottom-r{
+            float: left;
+            width: 100%;
+            margin-bottom: 15px;
+            margin-left: 0px;
+        }
+    }
+    .footer-mun {
+        min-height: 80px;
+        border-bottom: 1px solid #cecece3d;
+    }
 }
 
-@media screen and (max-width: 769px) {
+@media screen and (max-width: 768px) {
     .openmubutt{visibility:inherit;}
 }
 

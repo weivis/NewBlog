@@ -28,6 +28,7 @@
 
           <div class="morecom">
             <div class="item"><a  target="_blank" :href="morecom.bili"><img src="@/assets/header/bilibili.png"></a></div>
+            <div class="item"><a  target="_blank" :href="morecom.instagram"><img src="@/assets/header/instagram2.png"></a></div>
             <div class="item"><a  target="_blank" :href="morecom.github"><img src="@/assets/header/github.png"></a></div>
           </div>
 
@@ -65,7 +66,8 @@ export default {
       },
       morecom:{
         bili:'https://space.bilibili.com/4028423',
-        github:'https://github.com/weivis'
+        github:'https://github.com/weivis',
+        instagram: 'https://www.instagram.com/happys_wei/'
       }
     };
   },

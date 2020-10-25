@@ -5,6 +5,7 @@
         <div class="w">
           <div class="title">
             个人设计作品
+            <router-link to="/article"><div class="more">更多 ></div></router-link>
           </div>
 
           <el-row :gutter="10">
@@ -70,6 +71,9 @@ export default {
     margin-top: 50px;
     margin-bottom: 50px;
     font-size: 18px;color: #3a80ff;
+    .more{
+      float: right;
+    }
   }
   .item{
     margin-bottom: 50px;

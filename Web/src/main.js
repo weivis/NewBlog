@@ -7,6 +7,7 @@ import VueLive2d from 'vue-live2d-model'
 import '@/permission' // permission control
 import 'element-ui/lib/theme-chalk/index.css'
 import VueParallaxJs from 'vue-parallax-js'
+import Pagination from "@/components/Pagination.vue";
 const vueAnimate = require('@/utils/vue-animate')
 
 Vue.config.productionTip = false
@@ -14,6 +15,7 @@ Vue.use(vueAnimate)
 Vue.use(ElementUI)
 Vue.use(VueLive2d)
 Vue.use(VueParallaxJs)
+Vue.component('Pagination', Pagination)
 
 new Vue({
   el: '#app',

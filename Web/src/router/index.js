@@ -37,6 +37,7 @@ const routes = [
     path: '/work',
     component: Layout,
     navname: '工作',
+    hidden: true,
     children: [
       {
         path: '/',

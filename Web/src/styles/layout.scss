@@ -5,3 +5,25 @@
         width: 90%;
     }
 }
+.layoutPages{
+    height: 100%;
+    margin-top: 50px;
+    margin-bottom: 120px;
+    .w{
+        margin: 0 auto;
+        max-width: 1700px;
+        width: 90%;
+    }
+}
+
+@media screen and (max-width: 992px) {
+    .layoutPages{
+        margin-top: 80px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .layoutPages{
+        margin-top: 50px;
+    }
+}

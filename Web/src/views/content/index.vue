@@ -1,6 +1,8 @@
 <template>
-  <div>
-    <div>IDData {{ $route.params.id }}</div>
+    <div class="layoutPages">
+      <div class="w">
+        <div>IDData {{ $route.params.id }}</div>
+      </div>
   </div>
 </template>
 

@@ -8,7 +8,7 @@
 
 <template>
   <div class="Components-Pagination">
-    <div class="Pagination Content Common page-width">
+    <div class="Pagination Content">
       <el-pagination
         :background="background"
         :current-page.sync="currentPage"
@@ -99,5 +99,5 @@ export default {
 </script>
 
 <style scoped>
-  .Pagination.Content{margin: 0 auto !important;padding-right: 19px;}
+  .Pagination.Content{margin: 0 auto !important;}
 </style>
