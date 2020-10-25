@@ -2,9 +2,11 @@
 """
     引入蓝图模块
 """
-from app.demo import demo
+# from app.demo import demo
 from app.upload import upload
-from app.user import user
+from app.photograph import photograph
+from app.auth import auth
+from app.article import article
 from app.Config import BaseConfig
 
 
@@ -13,9 +15,11 @@ from app.Config import BaseConfig
         ()后面必须加, 否则无法正常启动
 """
 DEFAULT_BLUEPRINT = (
-    (demo, '/demo'),
+    # (demo, '/demo'),
     (upload, '/upload'),
-    (user, '/user')
+    (photograph, '/photograph'),
+    (auth, '/auth'),
+    (article, '/article')
 )
 
 def config_blueprint(app):

@@ -4,7 +4,7 @@ from app import create_app
 from app.Extensions import db
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager, Shell, Server, Command, Option
-from app.Models import DemoTable, AccountAdmin, AccountUser
+from app.Models import DemoTable, AccountAdmin, AccountUser, Articledb, Photograph
 from app.Config import BaseConfig, config
 
 
@@ -31,7 +31,7 @@ class CreateAdmin(Command):
         add = AccountAdmin().createadmin(username, account, password)
         print("创建新管理员" + " < " + add.username," ID:", add.id, " > " + "成功")
         print("账户:",add.account)
-        print("密码:",add.password)
+        print("密码:",password)
         
 
 manager.add_command("db", MigrateCommand)

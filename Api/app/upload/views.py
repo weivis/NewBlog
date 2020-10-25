@@ -16,6 +16,7 @@ from app.upload import FileCompress
 """
 UPLOADFILE_CONFIG = {
     'userhead': '/head',
+    'articlecover':'/article/cover'
 }
 
 def CreateNewFilename(ext):
@@ -126,7 +127,7 @@ def upload_file(request):
         LOADPATH = ""
 
     return 200, 'ok', {
-        'lodpath': LOADPATH + '/static' + UPLOADFILE_CONFIG[str(upload_key)] + '/' + newfilename,
+        'lodpath': LOADPATH + UPLOADFILE_CONFIG[str(upload_key)] + '/' + newfilename,
         'ospath': UPLOADFILE_CONFIG[str(upload_key)] + '/' + newfilename,
         'filename': newfilename
     }

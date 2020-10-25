@@ -5,8 +5,8 @@
 
     规范说明:
 		每个表必须存在更新时间和创建时间 可选参数[ index=True ] 设为索引
-		update_time = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
-		create_time = db.Column(db.DateTime, default=datetime.now)
+        create_time = db.Column(db.DateTime, default=datetime.now)  # 记录的创建时间
+        update_time = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)  # 记录的更新时间
 		注: 建议直接继承基类 BaseModel
 
     基础Sql常用类型提供:
@@ -18,11 +18,12 @@
         db.Column(db.Boolean, default=False)
     
     常用参数序列化处理:
-        datetime.strftime(self.字段名, "%Y-%m-%d %H:%M:%S")
+        update_time = datetime.strftime(self.update_time, "%Y-%m-%d %H:%M:%S"),
+        create_time = datetime.strftime(self.create_time, "%Y-%m-%d %H:%M:%S")
 
     可选字段:
         软删除状态
-        is_delete = db.Column(db.Boolean, default=False)
+        is_delete = db.Column(db.Boolean, default=False)
 
     toDict(self)使用方法:
         filter 默认下为空 '[]' 可以配合filter增加返回条件 如:
@@ -58,7 +59,9 @@ from datetime import datetime
 from app.Extensions import db
 from flask_bcrypt import check_password_hash, generate_password_hash
 import hashlib
-
+from sqlalchemy.dialects.mysql import LONGTEXT
+from app.Config import config
+from app.RAM import AppRAM
 
 class BaseModel(object):
     """模型基类，为每个模型补充创建时间与更新时间
@@ -129,7 +132,7 @@ class BaseModel_Account(object):
         from app.Tool import GenerateToken
         self.token = GenerateToken(str(self.account))
         db.session.commit()
-        return True
+        return self.token
 
     def _set_new_password(self, plaintext):
         newpassword = generate_password_hash(plaintext)
@@ -205,9 +208,9 @@ class ErrorLog(BaseModel, db.Model):
 
     def toDict(self):
         return dict(
-            address = self.address,
-            error_content = self.error_content,
-            level = self.level
+            address=self.address,
+            error_content=self.error_content,
+            level=self.level
         )
 
 
@@ -220,4 +223,83 @@ class DemoTable(BaseModel, db.Model):
         return dict(
             title=self.title,
             content=self.content
+        )
+
+
+class Articledb(BaseModel, db.Model):
+    """文章表
+
+    category: 文章分类
+        1:作品
+        2:文章
+        3:项目
+
+    subcategory: 二级分类
+        category: 1
+            1: 设计作品, 2: 视频作品
+
+    indexshow: 是否首页展示
+    hidden: 是否隐藏该项数据
+    is_delete: 是否删除该数据(软删除)
+
+    """
+    __tablename__ = 'article'
+    title = db.Column(db.String(255))
+    introduce = db.Column(db.String(255))
+    content = db.Column(LONGTEXT)
+    indexshow = db.Column(db.Boolean, default=False)
+    hidden = db.Column(db.Boolean, default=False)
+    category = db.Column(db.Integer)
+    subcategory = db.Column(db.Integer)
+    cover = db.Column(db.String(255))
+    is_delete = db.Column(db.Boolean, default=False)
+
+    def toDict(self):
+        return dict(
+            id = self.id,
+            title = self.title,
+            introduce = self.introduce,
+            content = self.content,
+            indexshow = self.indexshow,
+            hidden = self.hidden,
+            category = self.category,
+            subcategory = self.subcategory,
+            cover = config[AppRAM.runConfig].STATIC_LOADPATH + '/article/cover/' + self.cover,
+            update_time = datetime.strftime(self.update_time, "%Y-%m-%d %H:%M:%S"),
+            create_time = datetime.strftime(self.create_time, "%Y-%m-%d %H:%M:%S")
+        )
+
+    def _change_indexshow(self):
+        if self.indexshow == True:
+            self.indexshow = False
+        else:
+            self.indexshow = True
+        self._update()
+
+    def _change_hidden(self):
+        if self.hidden == True:
+            self.hidden = False
+        else:
+            self.hidden = True
+        self._update()
+
+    def _setcover(self, filename):
+        self.cover = str(filename)
+        self._update()
+
+
+class Photograph(BaseModel, db.Model):
+    """相册表"""
+    __tablename__ = 'photograph'
+    
+    file = db.Column(db.String(255))
+    is_delete = db.Column(db.Boolean, default=False)
+
+    def toDict(self):
+        return dict(
+            id = self.id,
+            cover = config[AppRAM.runConfig].STATIC_LOADPATH + '/photograph/cover/' + self.file,
+            file = config[AppRAM.runConfig].STATIC_LOADPATH + '/photograph/img/' + self.file,
+            update_time = datetime.strftime(self.update_time, "%Y-%m-%d %H:%M:%S"),
+            create_time = datetime.strftime(self.create_time, "%Y-%m-%d %H:%M:%S")
         )
