@@ -27,7 +27,7 @@ const routes = [
     meta: {title:'文章'},
     children: [
       {
-        path: '/',
+        path: '',
         name: 'all',
         component: () => import('@/views/article/index.vue'),
         meta: {title:'所有'}
@@ -46,8 +46,8 @@ const routes = [
     component: Layout,
     children: [
       {
-        path: '/',
-        name: 'photograph',
+        path: '',
+        name: 'photographlist',
         component: () => import('@/views/photograph/index.vue'),
         meta: {title:'摄影'}
       }
@@ -55,7 +55,7 @@ const routes = [
   },
   {
     path: '/login',
-    name: 'Login',
+    name: 'login',
     hidden: true,
     component: () => import('@/views/login/')
   }

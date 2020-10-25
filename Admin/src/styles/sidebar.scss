@@ -8,6 +8,19 @@
     position: relative;
   }
 
+  .sidebar{
+    background-color: rgb(31, 31, 31);
+  }
+  .el-submenu__title{
+    background-color: rgb(31, 31, 31) !important;
+  }
+  .el-menu-item{
+    background-color: rgb(31, 31, 31) !important;
+  }
+  .el-menu-item.is-active{
+    background-color: rgb(72, 72, 72) !important;
+  }
+
   // 侧边栏 Sidebar container
   .sidebar-container {
     transition: width 0.28s;

@@ -10,3 +10,11 @@ export function upload(data) {
         }
     })
 }
+
+export function authAdminLogin(data) {
+    return request({
+        url: '/auth/adminLogin',
+        method: 'post',
+        data: data
+    })
+}

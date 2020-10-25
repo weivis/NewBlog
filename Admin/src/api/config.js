@@ -1,5 +1,5 @@
 // 业务服务器
-const HttpRoot = 'http://127.0.0.1:9100'
+const HttpRoot = 'http://127.0.0.1:8080'
 
 // 暴露方法
 export default {

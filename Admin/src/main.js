@@ -1,28 +1,27 @@
 import Vue from 'vue'
 
 import ElementUI from 'element-ui'
-
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import * as auth from './utils/auth'
+import {getuser} from '@/utils/auth'
 import '@/permission' // permission control
 import '@/styles/main.scss' // global css
 import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.config.productionTip = false
-
 Vue.use(ElementUI)
-Vue.prototype.$authUser = auth
+
+
 
 const whiteList = ['/login','/404', '/index'] // 不重定向白名单
 router.beforeEach((to, from, next) => {
-    let user = auth.getuser()
+    let user = getuser()
     console.log('Token',user)
     if (user) {
       if (!user) {
         if (to.path === '/login') {
-          next({ path: '/' })
+          router.push({ name: "login", params: { msg: "登录失效" } })
         } else {
           if (JSON.stringify(to.query || {}) == '{}') {
             next({path: to.path})
@@ -32,7 +31,7 @@ router.beforeEach((to, from, next) => {
         }
       } else {
         if (to.path === '/login') {
-          next({ path: '/' })
+          router.push({ name: "home" })
         } else {
           next()
         }
@@ -42,10 +41,20 @@ router.beforeEach((to, from, next) => {
       if (whiteList.indexOf(to.path) !== -1) {
         next()
       } else {
-        next(`/login`) // 否则全部重定向到登录页
+        router.push({ name: "login", params: { msg: "登录失效" } })
       }
     }
   })
+
+Object.defineProperty(Vue.prototype, '$http', {
+  value: function(requestPromise, successCallback) {
+    requestPromise.then(res => {
+      if (!res) return
+      successCallback && successCallback(res)
+    })
+  }
+})
+  
 
 new Vue({
   el: '#app',

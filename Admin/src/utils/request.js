@@ -1,12 +1,12 @@
 import axios from 'axios'
 import { Message } from 'element-ui'
-import { HttpRoot } from '@/api/config.js'
+// import { HttpRoot } from '@/api/config'
 import router from '../router'
 import {logout, getuser} from './auth'
 
 // 创建axios实例
 const service = axios.create({
-  baseURL: HttpRoot, // api 的 base_url
+  baseURL: 'http://127.0.0.1:8080', // api 的 base_url
   timeout: 50000, // 请求超时时间
 })
 
@@ -29,22 +29,6 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   response => {
     const res = response.data
-
-    // if (res && res.code == 200){
-    //   Message({
-    //     message: res.msg,
-    //     type: 'success',
-    //     duration: 5 * 1000
-    //   })
-    // }
-
-    if(res.code !== 200){
-      Message({
-        message: res.msg,
-        type: 'error',
-        duration: 5 * 1000
-      })
-    }
     if(res.code == 10086){
       Message({
         message: res.msg,
@@ -53,7 +37,7 @@ service.interceptors.response.use(
       })
       logout()
       setTimeout(()=>{
-        router.go(0)
+        router.push({ name: "home" })
       },1500);
     }
     return res

@@ -1,12 +1,11 @@
-import Cookies from 'js-cookie'
-
-const TokenKey = 'Token'
+const TokenKey = 'AdminToken'
 
 export function getuser() {
-  return Cookies.get(TokenKey)
+  return window.localStorage.getItem(TokenKey)
 }
 
 export function signin(token) {
+  console.log(TokenKey, token)
   window.localStorage.setItem(TokenKey, token)
   return token
 }
