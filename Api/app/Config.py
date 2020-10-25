@@ -53,7 +53,7 @@ class DevelopmentConfig(BaseConfig):
     SQLALCHEMY_DATABASE_URI = "mysql://root:@127.0.0.1:3306/newblog?charset=utf8mb4"
 
     # 文件加载地址
-    STATIC_LOADPATH = "http://127.0.0.1/static"
+    STATIC_LOADPATH = "http://127.0.0.1:8080/static"
 
     MAIL_SERVER = 'smtp.163.com'
     MAIL_PORT = 25

@@ -20,7 +20,7 @@ def QueryArticle(request):
     category = request.get("category", None)
     subcategory = request.get("subcategory", None)
     hidden = request.get("hidden", False)
-    indexshow = request.get("indexshow", False)
+    indexshow = request.get("indexshow", None)
     is_delete = request.get("is_delete", False)
     per_page = request.get("per_page", 10)
 
@@ -31,7 +31,13 @@ def QueryArticle(request):
         if subcategory:
             querys = querys.filter_by(subcategory = subcategory)
 
-    querys = querys.filter_by(hidden = hidden, indexshow = indexshow, is_delete = is_delete)
+    if indexshow:
+        querys = querys.filter_by(indexshow = True)
+
+    if hidden:
+        querys = querys.filter_by(hidden = True)
+
+    querys = querys.filter_by(is_delete = is_delete)
 
     total, result, currentPage, totalPages = _Paginate(querys, querypage, per_page)
 
@@ -90,7 +96,7 @@ def PutArticle(request):
     )
 
 
-def PutArticle(request):
+def PutChange(request):
 
     id = request.get("id", None)
     change = request.get("change", None)

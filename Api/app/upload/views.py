@@ -16,7 +16,8 @@ from app.upload import FileCompress
 """
 UPLOADFILE_CONFIG = {
     'userhead': '/head',
-    'articlecover':'/article/cover'
+    'articlecover':'/article/cover',
+    'articleimg':'/article/img',
 }
 
 def CreateNewFilename(ext):

@@ -265,6 +265,7 @@ class Articledb(BaseModel, db.Model):
             category = self.category,
             subcategory = self.subcategory,
             cover = config[AppRAM.runConfig].STATIC_LOADPATH + '/article/cover/' + self.cover,
+            coverfile = self.cover,
             update_time = datetime.strftime(self.update_time, "%Y-%m-%d %H:%M:%S"),
             create_time = datetime.strftime(self.create_time, "%Y-%m-%d %H:%M:%S")
         )
