@@ -2,6 +2,7 @@
 @import './sidebar.scss';
 @import './transition.scss';
 @import './layout.scss';
+@import './input.scss';
 
 
 a, li, ul{
@@ -17,7 +18,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+  font-family: 'Microsoft YaHei', 'Microsoft YaHei UI';
 }
 
 #app {

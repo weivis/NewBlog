@@ -11,14 +11,16 @@ const routes = [
   {
     path: '/',
     component: Layout,
+    redirect: '/article',
+    hidden: true,
     name: 'home',
-    children: [
-      {
-        path: '/index',
-        component: () => import('@/views/Home.vue'),
-        meta: {title:'首页'}
-      }
-    ]
+    // children: [
+    //   {
+    //     path: '/index',
+    //     component: () => import('@/views/Home.vue'),
+    //     meta: {title:'首页'}
+    //   }
+    // ]
   },
   {
     path: '/article',
@@ -29,13 +31,13 @@ const routes = [
       {
         path: '',
         name: 'all',
-        component: () => import('@/views/article/index.vue'),
+        component: () => import('@/views/article/list.vue'),
         meta: {title:'所有'}
       },
       {
         path: 'edit',
         name: 'edit',
-        component: () => import('@/views/article/index.vue'),
+        component: () => import('@/views/article/edit.vue'),
         meta: {title:'新增和编辑'}
       }
     ]
@@ -49,7 +51,7 @@ const routes = [
         path: '',
         name: 'photographlist',
         component: () => import('@/views/photograph/index.vue'),
-        meta: {title:'摄影'}
+        meta: {title:'相册'}
       }
     ]
   },

@@ -4,7 +4,11 @@
       name="fade-transform"
       mode="out-in"
     >
-      <router-view :key="key"></router-view>
+      <div class="layout-style">
+        <div class="w"><router-view :key="key"></router-view></div>
+      </div>
+      
+
     </transition>
   </section>
 </template>
@@ -22,7 +26,7 @@ export default {
 <style scoped>
 .app-main {
   /*50 = navbar  */
-  min-height: calc(100vh - 0px);
+  min-height: calc(100vh - 60px);
   position: relative;
   overflow: hidden;
 }
