@@ -254,12 +254,12 @@ class Articledb(BaseModel, db.Model):
     cover = db.Column(db.String(255))
     is_delete = db.Column(db.Boolean, default=False)
 
-    def toDict(self):
-        return dict(
+    def toDict(self, type=None):
+        json = dict(
             id = self.id,
             title = self.title,
             introduce = self.introduce,
-            content = self.content,
+            
             indexshow = self.indexshow,
             hidden = self.hidden,
             category = self.category,
@@ -269,6 +269,13 @@ class Articledb(BaseModel, db.Model):
             update_time = datetime.strftime(self.update_time, "%Y-%m-%d %H:%M:%S"),
             create_time = datetime.strftime(self.create_time, "%Y-%m-%d %H:%M:%S")
         )
+        
+        if type == "item":
+            json = dict(json,**dict(
+                content = self.content,
+            ))
+
+        return json
 
     def _change_indexshow(self):
         if self.indexshow == True:
@@ -299,7 +306,7 @@ class Photograph(BaseModel, db.Model):
     def toDict(self):
         return dict(
             id = self.id,
-            cover = config[AppRAM.runConfig].STATIC_LOADPATH + '/photograph/cover/' + self.file,
+            cover = config[AppRAM.runConfig].STATIC_LOADPATH + '/photograph/img/' + self.file,
             file = config[AppRAM.runConfig].STATIC_LOADPATH + '/photograph/img/' + self.file,
             update_time = datetime.strftime(self.update_time, "%Y-%m-%d %H:%M:%S"),
             create_time = datetime.strftime(self.create_time, "%Y-%m-%d %H:%M:%S")

@@ -19,7 +19,7 @@ def Query(request):
     querypage = request.get('querypage',1)
     per_page = request.get("per_page", 10)
 
-    querys = Photograph.query.filter().order_by(Articledb.create_time.desc())
+    querys = Photograph.query.filter().order_by(Photograph.create_time.desc())
 
     total, result, currentPage, totalPages = _Paginate(querys, querypage, per_page)
 
@@ -33,7 +33,7 @@ def Query(request):
 def Del(request):
     id = request.get("id")
 
-    obj = request.query.get(id)
+    obj = Photograph.query.get(id)
     if obj:
         db.session.delete(obj)
         db.session.commit()

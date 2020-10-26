@@ -18,6 +18,7 @@ UPLOADFILE_CONFIG = {
     'userhead': '/head',
     'articlecover':'/article/cover',
     'articleimg':'/article/img',
+    'photograph':'/photograph/img'
 }
 
 def CreateNewFilename(ext):
@@ -104,10 +105,18 @@ def upload_file(request):
         return 400, '文件类型不允许', {}
     newfilename = CreateNewFilename(ext)
 
-    # 根据不同的上传标签制定不停的文件处理流
+    # 根据不同的上传标签制定不停的文件处理流 ---------------------------------------------------------------------------------------------
+
     if upload_key in ['userhead']:
+        # 头像处理
         files = FileCompress.HeadImg(file)
+
+    elif upload_key in ['articlecover']:
+        # 文章封面处理
+        files = FileCompress.ArticleCover(file)
+        
     else:
+        # 匹配不到的直接储存
         files = file
 
     # 保存文件到服务器

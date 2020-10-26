@@ -13,7 +13,7 @@ def Get(request):
     if not obj:
         return 400, "文章不存在", {}
 
-    return 200, "", obj.toDict()
+    return 200, "", obj.toDict("item")
 
 def QueryArticle(request):
     querypage = request.get('querypage',1)
@@ -58,6 +58,10 @@ def PutArticle(request):
     subcategory = request.get("subcategory", None)
     cover = request.get("cover", None)
 
+    if category == 1:
+        if not subcategory:
+            return 400, "作品必须选择二级分类", {}
+
     if not category:
         return 400, "文章分类不能为空", {}
 
@@ -86,7 +90,7 @@ def PutArticle(request):
     obj.content = content
     obj.cover = cover
     obj.category = category
-    if subcategory:
+    if category == 1:
         obj.subcategory = subcategory
     db.session.add(obj)
     db.session.commit()
