@@ -13,11 +13,11 @@
                   <div class="filter" :style="filter">
                     <div class="infobox">
                     <div class="name">{{item.title}}</div>
-                    <div class="info">{{item.info}}</div>
+                    <div class="info">{{item.introduce}}</div>
                     <div class="morebutton">了解详细></div>
                     </div>
                   </div>
-                  <img class="cover" :src="item.cover" />
+                  <div class="cover"><img :src="item.cover" /></div>
                   </router-link>
                 </div>
 
@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import { Queryarticle } from "@/api/article";
 export default {
   name: "myproject",
   data() {
@@ -40,27 +41,39 @@ export default {
           "url(" + require("@/assets/home/myproject-1.png") + ")",
       },
       data:[
-        {
-          title: "Niputv动漫视频网",
-          info: "18年的项目 因为没有时间去继续弄了所以开源了 可以参考里面的代码和设计",
-          cover: require("@/assets/img/project-cover.png"),
-          id:1
-        },
-        {
-          title: "Niputv动漫视频网",
-          info: "18年的项目 因为没有时间去继续弄了所以开源了 可以参考里面的代码和设计",
-          cover: require("@/assets/img/project-cover.png"),
-          id:2
-        }
       ]
     };
   },
   components: {},
+  methods: {
+    getList() {
+      this.$http(Queryarticle({
+        category: 3,
+        indexshow: true,
+        per_page: 2
+      }), (res) => {
+        console.log(res);
+        if (res.code == 200) {
+          this.data = res.data.result;
+        } else {
+          this.$message({
+            message: res.msg,
+            type: "error",
+            duration: 5 * 1000,
+          });
+        }
+      });
+    },
+  },
+  created() {
+    this.getList();
+  },
 };
 </script>
 
 <style lang="scss" scoped>
 .myproject-components {
+  margin-bottom: 200px;
   display: flow-root;
   .body {
     display: flow-root;
@@ -93,6 +106,10 @@ export default {
       position: relative;
       .cover{
         width: 100%;
+        height: 10%;
+        overflow: hidden;
+        max-height: 210px;
+        img{width: 100%;}
       }
       .filter{
         background-position: bottom;

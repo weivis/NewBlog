@@ -1,20 +1,26 @@
 <!--
-    <Pagination :total="totalItem" :page.sync="currentPage" @pagination="getList(contentType, currentPage)" :limit.sync="pageSize"/>
+      <Pagination
+        @pagination="getList()"
+        :page.sync="currentPage"
+        :pageCount.sync = totalPage
+        :total.sync="total"
+        v-if="total > 0"
+      />
     currentPage: 3, // 当前页码
-    totalItem: 1000, // 总条目
+    total: 1000, // 总条目
     totalPage: 100, // 总页数
     pageSize: 15 // 每页多少条
 -->
 
 <template>
   <div class="Components-Pagination">
-    <div class="Pagination Content">
+    <div class="Pagination Content Common page-width">
       <el-pagination
         :background="background"
         :current-page.sync="currentPage"
         :layout="layout"
-        :page-sizes="pageSizes"
-        :total="total"
+        :page-count="pageCount"
+
         v-bind="$attrs"
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
@@ -37,15 +43,9 @@ export default {
       type: Number,
       default: 1
     },
-    limit: {
+    pageCount: {
       type: Number,
       default: 20
-    },
-    pageSizes: {
-      type: Array,
-      default() {
-        return [10, 20, 30, 50]
-      }
     },
     layout: {
       type: String,
@@ -68,18 +68,9 @@ export default {
       set(val) {
         this.$emit('update:page', val)
       }
-    },
-    pageSize: {
-      get() {
-        return this.limit
-      },
-      set(val) {
-        this.$emit('update:limit', val)
-      }
     }
   },
   created(){
-    console.log(this.total, this.currentPage, this.limit)
   },
   methods: {
     handleSizeChange() {
@@ -99,5 +90,5 @@ export default {
 </script>
 
 <style scoped>
-  .Pagination.Content{margin: 0 auto !important;}
+  .Pagination.Content{margin: 0 auto !important;padding-right: 19px;}
 </style>

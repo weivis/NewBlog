@@ -9,7 +9,7 @@
             :md="12"
             :lg="8"
             :xl="8"
-            v-for="(item, index) in data"
+            v-for="(item, index) in tableData"
             :key="'project' + index"
           >
           <div class="item">
@@ -17,22 +17,24 @@
               <div class="filter" :style="filter">
                 <div class="infobox">
                   <div class="name">{{ item.title }}</div>
-                  <div class="info">{{ item.info }}</div>
+                  <div class="info">{{ item.introduce }}</div>
                   <div class="morebutton">了解详细></div>
                 </div>
               </div>
-              <img class="cover" :src="item.cover" />
+              <div class="cover"><img :src="item.cover" /></div>
             </router-link>
             </div>
           </el-col>
         </el-row>
 
-        <Pagination
-          :total="totalItem"
-          :page.sync="currentPage"
-          @pagination="getList()"
-          :limit.sync="pageSize"
-        />
+      <Pagination
+        @pagination="getList()"
+        :page.sync="currentPage"
+        :pageCount.sync = totalPage
+        :total.sync="total"
+        v-if="total > 0"
+      />
+
       </div>
     </div>
   </div>
@@ -40,7 +42,8 @@
 
 <script>
 // @ is an alias to /src
-
+import { Queryarticle } from "@/api/article";
+import Pagination from "@/components/Pagination.vue";
 export default {
   name: "project",
   data() {
@@ -49,39 +52,44 @@ export default {
         backgroundImage:
           "url(" + require("@/assets/home/myproject-1.png") + ")",
       },
-      data: [
-        {
-          title: "Niputv动漫视频网",
-          info:
-            "18年的项目 因为没有时间去继续弄了所以开源了 可以参考里面的代码和设计",
-          cover: require("@/assets/img/project-cover.png"),
-          id: 1,
-        },
-        {
-          title: "Niputv动漫视频网",
-          info:
-            "18年的项目 因为没有时间去继续弄了所以开源了 可以参考里面的代码和设计",
-          cover: require("@/assets/img/project-cover.png"),
-          id: 2,
-        },
-        {
-          title: "Niputv动漫视频网",
-          info:
-            "18年的项目 因为没有时间去继续弄了所以开源了 可以参考里面的代码和设计",
-          cover: require("@/assets/img/project-cover.png"),
-          id: 2,
-        },
-      ],
       currentPage: 1, // 当前页码
-      totalItem: 0, // 总条目
+      total: 0, // 总条目
       totalPage: 0, // 总页数
-      pageSize: 10, // 每页多少条
+      // pageSize: 10, // 每页多少条
+      tableData: [],
     };
   },
-  components: {},
-  created() {},
   methods: {
-    getList() {},
+    getList() {
+      this.$http(Queryarticle({
+        querypage: this.currentPage,
+        category: 3,
+        // subcategory: this.form.subcategory,
+        // hidden: this.form.hidden,
+        // indexshow: this.form.indexshow,
+        // per_page: 10
+      }), (res) => {
+        console.log(res);
+        if (res.code == 200) {
+          this.total = res.data.total;
+          this.currentPage = res.data.currentPage;
+          this.totalPage = res.data.totalPages;
+          this.tableData = res.data.result;
+        } else {
+          this.$message({
+            message: res.msg,
+            type: "error",
+            duration: 5 * 1000,
+          });
+        }
+      });
+    }
+  },
+  components: {
+    Pagination,
+  },
+  created() {
+    this.getList();
   },
 };
 </script>
@@ -96,6 +104,9 @@ export default {
   margin-bottom: 50px;
   .cover {
     width: 100%;
+    max-height: 210px;
+    overflow: hidden;
+    img{width: 100%;}
   }
   .filter {
     background-position: bottom;

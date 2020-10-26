@@ -10,7 +10,6 @@
             <div class="content">
               <el-row :gutter="30">
                 <el-col :xs="12" :sm="12" :md="6" :lg="6" :xl="6"
-                  :span="span"
                   v-for="(item, index) in list"
                   :key="'morecontent' + index"
                 >

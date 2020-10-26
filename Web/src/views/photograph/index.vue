@@ -5,14 +5,14 @@
         <div class="waterfall">
           <div
             class="item"
-            v-for="(item, index) in list"
+            v-for="(item, index) in tableData"
             :key="'photograph' + index"
           >
-            <img :src="item.src" />
+            <img :src="item.cover" />
           </div>
         </div>
 
-        <div @click="getData" class="LoadMore">LoadMore</div>
+        <div @click="getList" class="LoadMore" v-if="currentPage < totalPage">LoadMore</div>
       </div>
     </div>
   </div>
@@ -20,42 +20,49 @@
 
 <script>
 // @ is an alias to /src
+import { Query } from "@/api/photograph";
 export default {
   name: "photograph",
   components: {},
   data() {
     return {
       list: [
-        {
-          src:
-            "https://illya-support.weivird.com/static/com/photo/cover/20200702060546293.jpg",
-        },
-        {
-          src:
-            "https://illya-support.weivird.com/static/com/bangumi/cover/20200702042640463.jpg",
-        },
-        {
-          src:
-            "https://illya-support.weivird.com/static/com/photo/cover/20200702060546293.jpg",
-        },
-        {
-          src:
-            "https://illya-support.weivird.com/static/com/bangumi/cover/20200702042640463.jpg",
-        },
-        {
-          src:
-            "https://illya-support.weivird.com/static/com/photo/cover/20200702060546293.jpg",
-        },
       ],
+      currentPage: 0, // 当前页码
+      total: 0, // 总条目
+      totalPage: 0, // 总页数
+      // pageSize: 10, // 每页多少条
+      tableData: [],
     };
   },
   methods: {
-    getData() {
-      this.list = this.list.concat(this.list);
-    },
+    getList() {
+      this.$http(Query({
+        querypage: this.currentPage + 1,
+        category: 1,
+        // subcategory: this.form.subcategory,
+        // hidden: this.form.hidden,
+        // indexshow: this.form.indexshow,
+        // per_page: 1
+      }), (res) => {
+        console.log(res);
+        if (res.code == 200) {
+          this.total = res.data.total;
+          this.currentPage = res.data.currentPage;
+          this.totalPage = res.data.totalPages;
+          this.tableData = this.tableData.concat(res.data.result);
+        } else {
+          this.$message({
+            message: res.msg,
+            type: "error",
+            duration: 5 * 1000,
+          });
+        }
+      });
+    }
   },
   created() {
-    this.getData();
+    this.getList();
   },
 };
 </script>
@@ -64,6 +71,7 @@ export default {
   padding-top: 40px;
   overflow: hidden;
   width: 100%;
+  height: calc(100vh - 75px);
   background-color: #232323 !important;
   padding-bottom: 100px;
 }

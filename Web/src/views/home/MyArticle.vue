@@ -14,7 +14,7 @@
                 <router-link :to="'/content/' + item.id">
                   <div class="item">
                     <div class="name">{{item.title}}</div>
-                    <div class="info">{{item.info}}</div>
+                    <div class="info">{{item.introduce}}</div>
                   </div>
                 </router-link>
               </el-col>
@@ -28,45 +28,39 @@
 </template>
 
 <script>
+import { Queryarticle } from "@/api/article";
 export default {
   name: "myarticle",
   data() {
     return {
       data:[
-        {
-          title:"Niputv动漫视频网",
-          info:"18年的项目 因为没有时间去继续弄了所以开源了 可以参考里面的代码和设计",
-          id: 1
-        },
-        {
-          title:"Niputv动漫视频网",
-          info:"18年的项目 因为没有时间去继续弄了所以开源了 可以参考里面的代码和设计",
-          id: 1
-        },
-        {
-          title:"Niputv动漫视频网",
-          info:"18年的项目 因为没有时间去继续弄了所以开源了 可以参考里面的代码和设计",
-          id: 1
-        },
-        {
-          title:"Niputv动漫视频网",
-          info:"18年的项目 因为没有时间去继续弄了所以开源了 可以参考里面的代码和设计",
-          id: 1
-        },
-        {
-          title:"Niputv动漫视频网",
-          info:"18年的项目 因为没有时间去继续弄了所以开源了 可以参考里面的代码和设计",
-          id: 1
-        },
-        {
-          title:"Niputv动漫视频网",
-          info:"18年的项目 因为没有时间去继续弄了所以开源了 可以参考里面的代码和设计",
-          id: 1
-        }
       ]
     };
   },
   components: {
+  },
+  methods: {
+    getList() {
+      this.$http(Queryarticle({
+        category: 2,
+        // indexshow: true,
+        per_page: 6
+      }), (res) => {
+        console.log(res);
+        if (res.code == 200) {
+          this.data = res.data.result;
+        } else {
+          this.$message({
+            message: res.msg,
+            type: "error",
+            duration: 5 * 1000,
+          });
+        }
+      });
+    },
+  },
+  created() {
+    this.getList();
   },
 };
 </script>

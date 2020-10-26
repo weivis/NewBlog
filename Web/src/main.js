@@ -17,6 +17,15 @@ Vue.use(VueLive2d)
 Vue.use(VueParallaxJs)
 Vue.component('Pagination', Pagination)
 
+Object.defineProperty(Vue.prototype, '$http', {
+  value: function(requestPromise, successCallback) {
+    requestPromise.then(res => {
+      if (!res) return
+      successCallback && successCallback(res)
+    })
+  }
+})
+
 new Vue({
   el: '#app',
   router,

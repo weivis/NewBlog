@@ -26,41 +26,39 @@
 </template>
 
 <script>
+import { Queryarticle } from "@/api/article";
 export default {
   name: "mydesginopus",
   data() {
     return {
       data:[
-        {
-          cover:"https://www.weivird.com/static/article/cover/20200507181034047.png",
-          title:"我的动漫视频网站设计以前自己开发的一个动漫视频网站",
-          id:1
-        },
-                {
-          cover:"https://www.weivird.com/static/article/cover/20200507181034047.png",
-          title:"我的动漫视频网站设计以前自己开发的一个动漫视频网站",
-          id:1
-        },        {
-          cover:"https://www.weivird.com/static/article/cover/20200507181034047.png",
-          title:"我的动漫视频网站设计以前自己开发的一个动漫视频网站",
-          id:1
-        },        {
-          cover:"https://www.weivird.com/static/article/cover/20200507181034047.png",
-          title:"我的动漫视频网站设计以前自己开发的一个动漫视频网站",
-          id:1
-        },        {
-          cover:"https://www.weivird.com/static/article/cover/20200507181034047.png",
-          title:"我的动漫视频网站设计以前自己开发的一个动漫视频网站",
-          id:1
-        },        {
-          cover:"https://www.weivird.com/static/article/cover/20200507181034047.png",
-          title:"我的动漫视频网站设计以前自己开发的一个动漫视频网站",
-          id:1
-        }
       ]
     };
   },
   components: {
+  },
+  methods: {
+    getList() {
+      this.$http(Queryarticle({
+        category: 1,
+        indexshow: true,
+        per_page: 6
+      }), (res) => {
+        console.log(res);
+        if (res.code == 200) {
+          this.data = res.data.result;
+        } else {
+          this.$message({
+            message: res.msg,
+            type: "error",
+            duration: 5 * 1000,
+          });
+        }
+      });
+    },
+  },
+  created() {
+    this.getList();
   },
 };
 </script>
