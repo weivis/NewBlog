@@ -46,12 +46,19 @@ const routes = [
     path: '/photograph',
     name: 'photograph',
     component: Layout,
+    meta: {title:'相册'},
     children: [
       {
-        path: '',
-        name: 'photographlist',
-        component: () => import('@/views/photograph/index.vue'),
-        meta: {title:'相册'}
+        path: 'list',
+        name: 'photographall',
+        component: () => import('@/views/photograph/list.vue'),
+        meta: {title:'全部'}
+      },
+      {
+        path: 'add',
+        name: 'photographedit',
+        component: () => import('@/views/photograph/add.vue'),
+        meta: {title:'上传'}
       }
     ]
   },

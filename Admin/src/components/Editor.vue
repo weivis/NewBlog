@@ -5,6 +5,7 @@
 </template>
 <script>
 import { VueEditor } from "vue2-editor";
+import { upload } from "@/api/common";
 export default {
   name: "Editor",
   props: ["content", "disabled"],
@@ -24,19 +25,25 @@ export default {
   },
   methods: {
     handleImageAdded: function(file, Editor, cursorLocation, resetUploader) {
-      var formData = new FormData()
-      formData.append('file', file)
+
+      const formData = new FormData();
+      formData.append("file", file);
       formData.append("uploadKey", "articleimg");
-      this.$http.upload(formData)
-        .then(res => {
+      this.$http(upload(formData), (res) => {
+        console.log(res);
+        if (res.code == 200) {
           let url = res.data.lodpath
-          console.log(`${this.baseUrl}${url}`)
-            Editor.insertEmbed(cursorLocation, 'image', `${url}`)
+          Editor.insertEmbed(cursorLocation, 'image', `${url}`)
           resetUploader()
-        })
-        .catch(err => {
-          console.log(err)
-        })
+        } else {
+          this.$message({
+            message: res.msg,
+            type: "error",
+            duration: 5 * 1000,
+          });
+        }
+      })
+
     }
   }
 };

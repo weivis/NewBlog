@@ -192,8 +192,6 @@ export default {
 </script>
 
 <style rel="stylesheet/scss" lang="scss" scoped>
-</style>
-<style>
 .avatar-uploader .el-upload {
   border: 1px dashed #d9d9d9;
   border-radius: 6px;
@@ -213,9 +211,7 @@ export default {
   text-align: center;
 }
 .avatar {
-  width: 178px;
-  height: 178px;
-  display: block;
+  width: 100%;
 }
 .rowbtom {
   margin-bottom: 15px;
