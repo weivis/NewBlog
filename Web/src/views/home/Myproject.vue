@@ -52,7 +52,7 @@ export default {
         indexshow: true,
         per_page: 2
       }), (res) => {
-        console.log(res);
+        // console.log(res);
         if (res.code == 200) {
           this.data = res.data.result;
         } else {

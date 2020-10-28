@@ -18,7 +18,8 @@ UPLOADFILE_CONFIG = {
     'userhead': '/head',
     'articlecover':'/article/cover',
     'articleimg':'/article/img',
-    'photograph':'/photograph/img'
+    'photograph':'/photograph/img',
+    'components': '/components'
 }
 
 def CreateNewFilename(ext):
@@ -111,7 +112,7 @@ def upload_file(request):
         # 头像处理
         files = FileCompress.HeadImg(file)
 
-    elif upload_key in ['articlecover']:
+    elif upload_key in ['articlecover', 'components']:
         # 文章封面处理
         files = FileCompress.ArticleCover(file)
         

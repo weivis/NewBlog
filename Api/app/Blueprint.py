@@ -7,6 +7,7 @@ from app.upload import upload
 from app.photograph import photograph
 from app.auth import auth
 from app.article import article
+from app.components import components
 from app.Config import BaseConfig
 
 
@@ -19,7 +20,8 @@ DEFAULT_BLUEPRINT = (
     (upload, '/upload'),
     (photograph, '/photograph'),
     (auth, '/auth'),
-    (article, '/article')
+    (article, '/article'),
+    (components, '/components')
 )
 
 def config_blueprint(app):

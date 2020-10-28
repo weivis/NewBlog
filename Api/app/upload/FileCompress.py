@@ -93,6 +93,6 @@ def ProjectCover(files):
     new_size = (int(source_w[1] * rate), int(source_h[1] * rate))
 
     file = file.resize(new_size,Image.ANTIALIAS)
-        
+    
     return file.crop((0, 0, 320, 192))
     

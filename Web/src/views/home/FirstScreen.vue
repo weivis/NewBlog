@@ -79,6 +79,7 @@
 </template>
 
 <script>
+import { Queryarticle } from "@/api/article";
 import Live2d from "./Live2d.vue";
 export default {
   name: "firstscreen",
@@ -101,6 +102,45 @@ export default {
   },
   components: {
     Live2d,
+  },
+  methods: {
+    getList() {
+      this.$http(Queryarticle({
+        category: 2,
+        indexshow: true,
+        per_page: 4
+      }), (res) => {
+        if (res.code == 200) {
+          this.article = res.data.result;
+        } else {
+          this.$message({
+            message: res.msg,
+            type: "error",
+            duration: 5 * 1000,
+          });
+        }
+      });
+
+      this.$http(Queryarticle({
+        category: 3,
+        indexshow: true,
+        per_page: 2
+      }), (res) => {
+        // console.log(res);
+        if (res.code == 200) {
+          this.project = res.data.result;
+        } else {
+          this.$message({
+            message: res.msg,
+            type: "error",
+            duration: 5 * 1000,
+          });
+        }
+      });
+    },
+  },
+  created() {
+    this.getList();
   },
 };
 </script>

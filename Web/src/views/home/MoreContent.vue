@@ -15,16 +15,16 @@
                 >
                   <div class="item">
 
-                    <router-link :to="'/content/' + item.link" v-if="item.line_type == 0">
+                    <router-link :to="'/content/' + item.data" v-if="item.totype == 1">
                       <div class="cover"><img :src="item.cover" /></div>
-                      <div class="maintitle">{{ item.maintitle }}</div>
+                      <div class="maintitle">{{ item.introduce }}</div>
                       <div class="title">{{ item.title }}</div>
                       <div class="url">了解更多</div>
                     </router-link>
 
-                    <a :href="item.link" target="_blank" v-if="item.line_type == 1">
+                    <a :href="item.data" target="_blank" v-if="item.totype == 2">
                       <div class="cover"><img :src="item.cover" /></div>
-                      <div class="maintitle">{{ item.maintitle }}</div>
+                      <div class="maintitle">{{ item.introduce }}</div>
                       <div class="title">{{ item.title }}</div>
                       <div class="url">了解更多</div>
                     </a>
@@ -42,6 +42,7 @@
 </template>
 
 <script>
+import { Query } from "@/api/components";
 export default {
   name: "morecontent",
   data() {
@@ -79,11 +80,33 @@ export default {
     };
   },
   components: {},
+  methods: {
+    getList() {
+      this.$http(
+        Query({
+          components: 'indexmore',
+          limit: 4,
+        }),
+        (res) => {
+          // console.log(res);
+          if (res.code == 200) {
+            // this.total = res.data.total;
+            // this.currentPage = res.data.currentPage;
+            // this.totalPage = res.data.totalPages;
+            this.list = res.data;
+          } else {
+            this.$message({
+              message: res.msg,
+              type: "error",
+              duration: 5 * 1000,
+            });
+          }
+        }
+      );
+    },
+  },
   created() {
-  },
-  watch: {
-  },
-  mounted() {
+    this.getList();
   },
 };
 </script>
@@ -113,6 +136,8 @@ export default {
       padding-bottom: 20px;
       .cover {
         width: 100%;
+        max-height: 210px;
+        overflow: hidden;
         img {
           width: 100%;
         }

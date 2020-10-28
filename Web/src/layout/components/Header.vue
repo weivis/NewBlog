@@ -7,11 +7,11 @@
       <div class="layout">
         <div class="w">
 
-          <div class="header">
+          <div class="header" @click="home()">
             <img :src="logo.pic">
           </div>
 
-          <div class="name">
+          <div class="name" @click="home()">
             <div class="en">{{logo.en}}</div>
             <div class="cn">{{logo.cn}}</div>
           </div>
@@ -44,6 +44,9 @@ export default {
   components: {
   },
   methods:{
+    home(){
+      this.$router.push({ name: "home" });
+    },
       oepnnav(){
         if (this.navopbutton == true){
           if (this.navop == false){

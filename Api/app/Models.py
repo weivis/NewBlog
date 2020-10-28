@@ -245,6 +245,9 @@ class Articledb(BaseModel, db.Model):
     cover = db.Column(db.String(255))
     is_delete = db.Column(db.Boolean, default=False)
 
+    def _getcover(self):
+        return config[AppRAM.runConfig].STATIC_LOADPATH + '/article/cover/' + self.cover if self.cover else "" 
+
     def toDict(self, type=None):
         json = dict(
             id = self.id,
@@ -254,7 +257,7 @@ class Articledb(BaseModel, db.Model):
             hidden = self.hidden,
             category = self.category,
             subcategory = self.subcategory,
-            cover = config[AppRAM.runConfig].STATIC_LOADPATH + '/article/cover/' + self.cover,
+            cover = self._getcover(),
             coverfile = self.cover,
             update_time = datetime.strftime(self.update_time, "%Y-%m-%d %H:%M:%S"),
             create_time = datetime.strftime(self.create_time, "%Y-%m-%d %H:%M:%S")
@@ -310,20 +313,40 @@ class Components(BaseModel, db.Model):
     totype = db.Column(db.Integer)  # 前往的链接类型 1 = 站内文章ID 2 = 站外链接
     data = db.Column(db.Text)
     sort = db.Column(db.Integer, default=1)
+    cover = db.Column(db.String(255))
+    title = db.Column(db.String(255))
+    introduce = db.Column(db.String(255))
 
     def toDict(self):
+        if self.totype == 1:
+            articledata = Articledb.query.get(int(self.data))
+            cover = articledata._getcover()
+            title = articledata.title
+            introduce = articledata.introduce
+
+        else:
+            cover = config[AppRAM.runConfig].STATIC_LOADPATH + '/components/' + self.cover if self.cover else "",
+            title = self.title
+            introduce = self.introduce
+
         return dict(
             id = self.id,
             components = self.components,
             totype = self.totype,
             data = self.data,
-            sort = self.sort
+            sort = self.sort,
+            cover = cover,
+            title = title,
+            introduce = introduce
         )
 
-    def _create(self, components, totype, data):
+    def _create(self, components, totype, data, cover, title, introduce):
+        self.cover = cover
+        self.title = title
         self.components = components
         self.totype = totype
         self.data = data
+        self.introduce = introduce
         self._update()
         return self
 

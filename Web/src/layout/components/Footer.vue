@@ -14,6 +14,9 @@
                       <div>{{item.title}}</div>
                     </router-link>
                   </div>
+                    <a class="item" href="https://shop267885373.taobao.com/index.htm" target="_blank">
+                      <div>TA的淘宝店</div>
+                    </a>
                 </div>
               </el-col>
 
@@ -21,7 +24,7 @@
                 <div class="name">文章</div>
                 <div class="footer-mun">
                   <div class="item" v-for="(item,index) in article" :key="'footer-mun-article' + index">
-                    <router-link :to="item.to">
+                    <router-link :to="'/content/' + item.id">
                       <div>{{item.title}}</div>
                     </router-link>
                   </div>
@@ -37,7 +40,7 @@
                 <div class="name">项目和创作</div>
                 <div class="footer-mun">
                   <div class="item" v-for="(item,index) in project" :key="'footer-mun-project' + index">
-                    <router-link :to="'/content/' + item.to">
+                    <router-link :to="'/content/' + item.id">
                       <div>{{item.title}}</div>
                     </router-link>
                   </div>
@@ -98,6 +101,7 @@
 </template>
 
 <script>
+import { Queryarticle } from "@/api/article";
 export default {
   name: "Footer",
   components: {
@@ -120,32 +124,8 @@ export default {
             }
         ],
         article:[
-            {
-                title:"1",
-                to:"0"
-            },
-            {
-                title:"2",
-                to:"0"
-            },
-            {
-                title:"3",
-                to:"0"
-            }
         ],
         project:[
-            {
-                title:"1",
-                to:"0"
-            },
-            {
-                title:"2",
-                to:"0"
-            },
-            {
-                title:"3",
-                to:"0"
-            }
         ],
         more:[
             {
@@ -187,11 +167,44 @@ export default {
         ]
     };
   },
-  created() {
-    //生命周期函数
-  },
   methods: {
-    //事件处理器
+    getList() {
+      this.$http(Queryarticle({
+        category: 2,
+        indexshow: true,
+        per_page: 4
+      }), (res) => {
+        if (res.code == 200) {
+          this.article = res.data.result;
+        } else {
+          this.$message({
+            message: res.msg,
+            type: "error",
+            duration: 5 * 1000,
+          });
+        }
+      });
+
+      this.$http(Queryarticle({
+        category: 3,
+        indexshow: true,
+        per_page: 2
+      }), (res) => {
+        // console.log(res);
+        if (res.code == 200) {
+          this.project = res.data.result;
+        } else {
+          this.$message({
+            message: res.msg,
+            type: "error",
+            duration: 5 * 1000,
+          });
+        }
+      });
+    },
+  },
+  created() {
+    this.getList();
   },
 };
 </script>

@@ -69,7 +69,7 @@ export default {
         // indexshow: this.form.indexshow,
         // per_page: 10
       }), (res) => {
-        console.log(res);
+        // console.log(res);
         if (res.code == 200) {
           this.total = res.data.total;
           this.currentPage = res.data.currentPage;

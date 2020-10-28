@@ -11,16 +11,34 @@ const routes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/article',
+    redirect: '/components',
     hidden: true,
     name: 'home',
-    // children: [
-    //   {
-    //     path: '/index',
-    //     component: () => import('@/views/Home.vue'),
-    //     meta: {title:'首页'}
-    //   }
-    // ]
+  },
+  {
+    path: '/components',
+    component: Layout,
+    name: 'components',
+    children: [
+      {
+        path: '/index',
+        component: () => import('@/views/componentsdata/list.vue'),
+        meta: {title:'组件'}
+      }
+    ]
+  },
+  {
+    path: '/cache',
+    component: Layout,
+    name: 'cachedata',
+    hidden: true,
+    children: [
+      {
+        path: '',
+        component: () => import('@/views/cache/list.vue'),
+        meta: {title:'内容缓存'}
+      }
+    ]
   },
   {
     path: '/article',
