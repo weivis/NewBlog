@@ -1,6 +1,5 @@
 alembic==1.4.3
 aniso8601==8.0.0
-bcrypt==3.2.0
 blinker==1.4
 cffi==1.14.3
 click==7.1.2
