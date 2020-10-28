@@ -337,7 +337,9 @@ class Components(BaseModel, db.Model):
             sort = self.sort,
             cover = cover,
             title = title,
-            introduce = introduce
+            introduce = introduce,
+            update_time = datetime.strftime(self.update_time, "%Y-%m-%d %H:%M:%S"),
+            create_time = datetime.strftime(self.create_time, "%Y-%m-%d %H:%M:%S")
         )
 
     def _create(self, components, totype, data, cover, title, introduce):
