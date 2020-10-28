@@ -6,7 +6,7 @@ import { Message } from 'element-ui'
 
 // 创建axios实例
 const service = axios.create({
-  baseURL: 'http://127.0.0.1:8080', // api 的 base_url
+  baseURL: 'https://www.weivird.com/api', // api 的 base_url
   timeout: 50000, // 请求超时时间
 })
 
