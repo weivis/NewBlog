@@ -7,7 +7,7 @@ from app.Startprint import config_startprint
 from app.Config import config
 from app.RAM import AppRAM
 
-def create_app(runConfig='default'):
+def create_app(runConfig='production'):
     """构建入口 create_app()
 
     :param runConfig: 运行配置文件 默认default, 可选'development', 'production'

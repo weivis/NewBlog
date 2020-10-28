@@ -67,7 +67,7 @@ class ProductionConfig(BaseConfig):
     """
     
     DEBUG = False
-    SQLALCHEMY_DATABASE_URI = "mysql://root:weivimysql@127.0.0.1:3306/my-website?charset=utf8mb4"
+    SQLALCHEMY_DATABASE_URI = "mysql://root:weivimysql@127.0.0.1:3306/newblog?charset=utf8mb4"
 
     # 文件加载地址
     STATIC_LOADPATH = "https://www.weivird.com/static"
