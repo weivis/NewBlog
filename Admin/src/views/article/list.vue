@@ -101,7 +101,7 @@
           <el-button @click="change({id:scope.row.id, change:1})" v-if="scope.row.indexshow == true" type="success" style="margin-right: 10px;">取消首页展示</el-button>
           <el-button @click="change({id:scope.row.id, change:1})" v-if="scope.row.indexshow == false" style="margin-right: 10px;">首页展示</el-button>
 
-          <a :href="'/article/edit?id=' + scope.row.id" target="_blank" style="margin-right: 10px;"><el-button>编辑</el-button></a>
+          <a :href="'/admin/article/edit?id=' + scope.row.id" target="_blank" style="margin-right: 10px;"><el-button>编辑</el-button></a>
 
           <el-button @click="change({id:scope.row.id, change:3})">删除</el-button>
           
