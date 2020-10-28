@@ -88,6 +88,10 @@ class BaseModel(object):
         db.session.add(self)
         db.session.commit()
 
+    def _delete(self):
+        db.session.delete(self)
+        db.session.commit()
+
     def __repr__(self):
         return '[ repr ] Class: %s, ID: %r' % (self.__class__.__name__, self.id)
 
@@ -213,19 +217,6 @@ class ErrorLog(BaseModel, db.Model):
             level=self.level
         )
 
-
-class DemoTable(BaseModel, db.Model):
-    __tablename__ = 'demo_table'
-    title = db.Column(db.String(255))
-    content = db.Column(db.Text)
-
-    def toDict(self):
-        return dict(
-            title=self.title,
-            content=self.content
-        )
-
-
 class Articledb(BaseModel, db.Model):
     """文章表
 
@@ -259,7 +250,6 @@ class Articledb(BaseModel, db.Model):
             id = self.id,
             title = self.title,
             introduce = self.introduce,
-            
             indexshow = self.indexshow,
             hidden = self.hidden,
             category = self.category,
@@ -311,3 +301,33 @@ class Photograph(BaseModel, db.Model):
             update_time = datetime.strftime(self.update_time, "%Y-%m-%d %H:%M:%S"),
             create_time = datetime.strftime(self.create_time, "%Y-%m-%d %H:%M:%S")
         )
+
+class Components(BaseModel, db.Model):
+    """组件"""
+    __tablename__ = 'components'
+    
+    components = db.Column(db.String(255))  # 组件名
+    totype = db.Column(db.Integer)  # 前往的链接类型 1 = 站内文章ID 2 = 站外链接
+    data = db.Column(db.Text)
+    sort = db.Column(db.Integer, default=1)
+
+    def toDict(self):
+        return dict(
+            id = self.id,
+            components = self.components,
+            totype = self.totype,
+            data = self.data,
+            sort = self.sort
+        )
+
+    def _create(self, components, totype, data):
+        self.components = components
+        self.totype = totype
+        self.data = data
+        self._update()
+        return self
+
+    def _changesort(self, sort):
+        self.sort = sort
+        self._update()
+        return self

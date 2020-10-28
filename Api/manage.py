@@ -4,7 +4,7 @@ from app import create_app
 from app.Extensions import db
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager, Shell, Server, Command, Option
-from app.Models import DemoTable, AccountAdmin, AccountUser, Articledb, Photograph
+from app.Models import AccountAdmin, AccountUser, Articledb, Photograph
 from app.Config import BaseConfig, config
 
 
