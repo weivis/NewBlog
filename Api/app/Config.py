@@ -58,8 +58,8 @@ class DevelopmentConfig(BaseConfig):
     MAIL_SERVER = 'smtp.163.com'
     MAIL_PORT = 25
     MAIL_USE_TLS = True
-    MAIL_USERNAME = 'happys_wei@163.com'
-    MAIL_PASSWORD = 'YTKPXXRKISOTASSV'
+    MAIL_USERNAME = ''
+    MAIL_PASSWORD = ''
 
 class ProductionConfig(BaseConfig):
     """
@@ -67,10 +67,10 @@ class ProductionConfig(BaseConfig):
     """
     
     DEBUG = False
-    SQLALCHEMY_DATABASE_URI = ""
+    SQLALCHEMY_DATABASE_URI = "mysql://root:weivimysql@127.0.0.1:3306/my-website?charset=utf8mb4"
 
     # 文件加载地址
-    STATIC_LOADPATH = "http://192.168.0.1/static"
+    STATIC_LOADPATH = "https://www.weivird.com/static"
 
 config = {
     'development': DevelopmentConfig,

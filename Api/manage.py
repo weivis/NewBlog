@@ -8,7 +8,7 @@ from app.Models import AccountAdmin, AccountUser, Articledb, Photograph, Compone
 from app.Config import BaseConfig, config
 
 
-RUN_CONFIG = 'development'
+RUN_CONFIG = 'production'
 
 
 app = create_app(RUN_CONFIG)
