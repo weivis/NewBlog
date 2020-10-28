@@ -1,5 +1,6 @@
 // 业务服务器
-const HttpRoot = 'http://127.0.0.1:9100'
+// const HttpRoot = 'http://127.0.0.1:9100'
+const HttpRoot = "https://www.weivird.com/api"
 
 // 暴露方法
 export default {

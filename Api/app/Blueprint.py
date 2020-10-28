@@ -32,7 +32,7 @@ def config_blueprint(app):
     API_DOC_MEMBER = []
 
     for blueprint, prefix in DEFAULT_BLUEPRINT:
-        app.register_blueprint(blueprint, url_prefix=prefix)
+        app.register_blueprint(blueprint, url_prefix = '/api' + prefix)
 
         # 自动设置Flas-Docs的API_DOC_MEMBER参数
         blueprintName = str(blueprint.name)
