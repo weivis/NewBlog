@@ -114,4 +114,32 @@ export default {
     }
   }
 }
+@media screen and (max-width: 768px) {
+.item {
+  margin-bottom: 25px;
+  overflow: hidden;
+  width: 100%;
+  .coverw {
+    float: left;
+    width: 180px;
+    .cover {
+      border-radius: 4px;
+      overflow: hidden;
+      width: 100%;
+    }
+  }
+  .infobox {
+    float: right;
+    width: calc(100% - 198px);
+    .name {
+      margin-top: 0%;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    .info {
+      font-size: 12px;
+    }
+  }
+}
+}
 </style>
