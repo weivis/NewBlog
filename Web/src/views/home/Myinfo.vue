@@ -76,7 +76,7 @@ export default {
         chance:{
           a:"当时视频类兴趣越做越大，打算给团队弄个官网，于是开始上手学习Html等打算编写简易官网，不料越陷越深，对Web产生了浓厚的兴趣，于是我的注意力也从视频动漫转移到了Web，最早通过学习Discuz和JS尝试制作动漫论坛，和个人主页MC服务器官网等。",
           b:"有一次突然想做一个自己的动漫视频网站 类似AB站，于是在网上召集小伙伴一起开发做一个动漫视频网站，我负责UI设计和前端开发，可惜团队逐渐瓦解，到最后剩下自己一个。",
-          c:"于是开始尝试自己学习前后端语言和框架，开始自己制作，从最初的H5css Jq Flask Python 开始直到实现了自己的视频网站, 并陆续完成了很多网站作品，如Niputv Mahouo搜索引擎，伊莉雅应援站，等各种网站作品。现于广州某科技公司担任全栈开发"
+          c:"于是开始尝试自己学习前后端语言和框架，开始自己制作，从最初的H5css Jq Flask Python 开始直到实现了自己的视频网站, 并陆续完成了很多网站作品, Niputv Mahouo搜索引擎，伊莉雅应援站等，也参与了布丁动画5DM早期开发calibur-tv等 。现于广州某科技公司担任全栈开发"
         }
       }
     };
@@ -95,7 +95,7 @@ export default {
 }
 .anime-item{
   overflow: hidden;
-  height: 100vh;
+  height: 120vh;
   max-height: 600px;
   background-color: #ffffff;
   padding-bottom: 20px;
