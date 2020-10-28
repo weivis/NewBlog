@@ -90,7 +90,7 @@ const routes = [
 
 const router = new VueRouter({
   mode: 'history',
-  base:'admin',
+  base: 'admin',
   routes
 })
 
